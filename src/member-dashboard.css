@@ -1,0 +1,34 @@
+.member-dashboard--redesigned{max-width:1120px;padding-top:28px}
+.member-dashboard-heading{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:28px}
+.member-dashboard-heading h1{margin:8px 0 6px;font-size:clamp(25px,3vw,34px);letter-spacing:-1.3px}
+.member-dashboard-heading h1 span{color:var(--green)}
+.member-dashboard-heading p{margin:0;color:var(--muted);font-size:12px}
+.member-profile-avatar{width:48px;height:48px;display:grid;place-items:center;flex:0 0 auto;border-radius:50%;background:var(--green);color:var(--lime);font-weight:800;font-size:18px}
+.member-overview-panel{padding:24px;background:var(--deep);color:#fff;border-radius:14px;box-shadow:0 14px 32px #102a2218}
+.member-overview-top,.member-progress-block>div{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.member-overview-top h2{margin:7px 0 4px;font-size:23px;letter-spacing:-.7px}
+.member-overview-top p{margin:0;color:#a9c1b4;font-size:11px}
+.member-status{display:inline-flex;align-items:center;padding:6px 9px;border-radius:5px;background:#eaf3e8;color:var(--green);font:9px 'DM Mono',monospace;letter-spacing:.4px;white-space:nowrap}
+.member-status--active{background:#dcedd6;color:#37643d}.member-status--expiring-soon{background:#fff1d7;color:#986a25}.member-status--expired{background:#ffe5df;color:#ad5b47}.member-status--pending,.member-status--not-set{background:#eef2ef;color:#6c7d74}.member-status--paid{background:#dcedd6;color:#37643d}.member-status--failed{background:#ffe5df;color:#ad5b47}
+.member-overview-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:25px 0 22px;padding-top:19px;border-top:1px solid #ffffff1c}
+.member-overview-grid div{display:grid;gap:7px;min-width:0}
+.member-overview-grid small,.member-payment-grid small{color:#91aa9d;font:9px 'DM Mono',monospace;text-transform:uppercase;letter-spacing:.4px}
+.member-overview-grid strong{font-size:13px;color:#eef5ef;overflow-wrap:anywhere}
+.member-progress-block{display:grid;gap:9px}
+.member-progress-block>div:first-child{color:#b4cabe;font-size:11px}.member-progress-block b{color:var(--lime);font-size:12px}
+.member-progress-track{height:7px;overflow:hidden;border-radius:99px;background:#ffffff1c}.member-progress-track i{display:block;height:100%;border-radius:inherit;background:var(--lime);transition:width .6s ease}
+.member-section{margin-top:32px}.member-section-heading{margin-bottom:14px}.member-section-heading h2,.member-panel-heading h2{margin:5px 0 0;font-size:18px;letter-spacing:-.5px}
+.member-stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.member-stat-empty,.member-dashboard-panel{background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 24px #173a2e08}
+.member-stat-empty{display:flex;gap:12px;align-items:flex-start;padding:16px}.member-stat-empty>svg{flex:0 0 auto;color:var(--green);margin-top:2px}
+.member-stat-empty div{display:grid;gap:5px;min-width:0}.member-stat-empty small{color:#809188;font:9px 'DM Mono',monospace;text-transform:uppercase}.member-stat-empty strong{font-size:19px;color:var(--ink)}.member-stat-empty span{font-size:10px;line-height:1.45;color:var(--muted)}
+.member-dashboard-columns{display:grid;grid-template-columns:1.1fr .9fr;gap:16px;margin-top:30px}
+.member-dashboard-panel{padding:20px;margin-top:16px}.member-dashboard-columns .member-dashboard-panel{margin-top:0}
+.member-panel-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:18px}.member-panel-heading>svg{color:var(--green)}
+.member-empty-state{display:grid;place-items:center;min-height:116px;padding:18px;text-align:center;color:var(--muted);font-size:11px;background:#f8faf8;border:1px dashed #d5e1d8}
+.member-trainer-card{display:flex;align-items:center;gap:12px;padding:13px;background:#f5f9f5;border:1px solid #e0ebe1}.member-trainer-avatar{width:38px;height:38px;display:grid;place-items:center;border-radius:50%;background:var(--soft);color:var(--green);font-weight:800}.member-trainer-card div{display:grid;gap:4px;min-width:0}.member-trainer-card strong{font-size:13px;overflow-wrap:anywhere}.member-trainer-card span{color:var(--muted);font-size:10px}
+.member-payment-panel{margin-top:30px}.member-pay-button{padding:9px 13px;font-size:10px}.member-payment-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.member-payment-grid>div{display:grid;gap:7px;min-width:0;padding:12px;background:#f8faf8;border:1px solid #e5ece6}.member-payment-grid strong{font-size:13px;overflow-wrap:anywhere}.member-payment-grid .member-status{justify-self:start}
+.member-timeline{display:grid;gap:0}.member-timeline-item{display:flex;gap:12px;position:relative;padding:0 0 18px}.member-timeline-item:not(:last-child):after{content:'';position:absolute;left:14px;top:28px;bottom:0;width:1px;background:#dce7df}.member-timeline-item>span{width:29px;height:29px;display:grid;place-items:center;z-index:1;border-radius:50%;background:#eaf3e8;color:var(--green)}.member-timeline-item div{display:grid;gap:4px;padding-top:2px}.member-timeline-item strong{font-size:12px}.member-timeline-item small{color:var(--muted);font-size:10px;line-height:1.45}
+@media(max-width:850px){.member-overview-grid{grid-template-columns:repeat(2,1fr)}.member-dashboard-columns{grid-template-columns:1fr}.member-payment-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.member-dashboard--redesigned{padding-top:22px}.member-dashboard-heading{align-items:flex-start;margin-bottom:22px}.member-dashboard-heading h1{font-size:25px}.member-profile-avatar{width:40px;height:40px;font-size:15px}.member-overview-panel{padding:19px}.member-overview-top{align-items:flex-start;flex-direction:column;gap:12px}.member-overview-top h2{font-size:21px}.member-overview-grid{gap:18px 10px;margin-top:20px}.member-overview-grid strong{font-size:12px}.member-stat-grid{grid-template-columns:1fr}.member-section{margin-top:26px}.member-dashboard-panel{padding:16px}.member-payment-grid{grid-template-columns:1fr 1fr;gap:8px}.member-payment-grid>div{padding:10px}.member-payment-grid strong{font-size:12px}}
+@media(max-width:390px){.member-overview-grid,.member-payment-grid{grid-template-columns:1fr}.member-panel-heading{align-items:flex-start;flex-direction:column}.member-pay-button{width:100%}}
