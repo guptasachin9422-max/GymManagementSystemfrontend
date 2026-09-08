@@ -1,13 +1,15 @@
-﻿import axios from 'axios';
+import axios from 'axios';
 const api = axios.create({ baseURL: import.meta.env.VITE_API_URL || '/api' });
 api.interceptors.request.use((config) => { const raw=localStorage.getItem('fitlife_session'); if(raw){ try{const s=JSON.parse(raw); if(s.token) config.headers.Authorization=`Bearer ${s.token}`;}catch{} } return config; });
 api.interceptors.response.use(response=>response,error=>{ if(error?.response?.status===401&&typeof window!=='undefined') window.dispatchEvent(new CustomEvent('fitlife:session-expired')); return Promise.reject(error); });
 export const authApi={ login:(email,password)=>api.post('/user/login',{email,password}), register:(data)=>api.post('/user/register',data), logout:()=>api.post('/user/logout') };
 export const gymApi={
+ profile:()=>api.get('/user/profile'), updateProfile:(data)=>api.put('/user/profile',data), uploadProfilePhoto:(data)=>api.post('/user/profile/photo',data,{headers:{'Content-Type':'multipart/form-data'}}), removeProfilePhoto:()=>api.delete('/user/profile/photo'),
  users:()=>api.get('/user'), updateUserDisplayName:(id,displayName)=>api.put(`/user/${id}/display-name`,{displayName}), deleteUser:(id)=>api.delete(`/user/${id}`),
  members:()=>api.get('/members'), membershipPlans:()=>api.get('/members/plans'), myMembers:()=>api.get('/members/my-members'), createMember:(data)=>api.post('/members',data), updateMember:(id,data)=>api.put(`/members/${id}`,data), deleteMember:(id)=>api.delete(`/members/${id}`), memberProfile:()=>api.get('/members/my-profile'),
  trainers:()=>api.get('/trainers'), trainer:(id)=>api.get(`/trainers/${id}`), createTrainer:(data)=>api.post('/trainers',data), updateTrainer:(id,data)=>api.put(`/trainers/${id}`,data), deleteTrainer:(id)=>api.delete(`/trainers/${id}`), trainerProfile:()=>api.get('/trainers/my-profile'), updateMyTrainerProfile:(data)=>api.put('/trainers/my-profile',data),
- payments:()=>api.get('/payments'), myPayments:()=>api.get('/payments/my-payment'), createPayment:(data)=>api.post('/payments',data), deletePayment:(id)=>api.delete(`/payments/${id}`), createRazorpayOrder:(data)=>api.post('/payments/razorpay/order',data), verifyRazorpayPayment:(data)=>api.post('/payments/razorpay/verify',data), markRazorpayPaymentFailed:(data)=>api.post('/payments/razorpay/failed',data), dashboard:()=>api.get('/dashboard')
+  payments:()=>api.get('/payments'), myPayments:()=>api.get('/payments/my-payment'), createPayment:(data)=>api.post('/payments',data), deletePayment:(id)=>api.delete(`/payments/${id}`), createRazorpayOrder:(data)=>api.post('/payments/razorpay/order',data), verifyRazorpayPayment:(data)=>api.post('/payments/razorpay/verify',data), markRazorpayPaymentFailed:(data)=>api.post('/payments/razorpay/failed',data), dashboard:()=>api.get('/dashboard'),
+  aiChat:(message)=>api.post('/ai/chat',{message})
 };
 export function errorMessage(error){
   if (!error?.response) return 'Could not connect to the server. Make sure the Spring Boot backend is running on port 8080.';
