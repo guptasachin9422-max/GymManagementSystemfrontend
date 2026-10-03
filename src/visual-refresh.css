@@ -1,0 +1,373 @@
+/* Public website and sign-in. Kept separate from the management workspace. */
+:root {
+  --ink: #193c31;
+  --deep: #183e32;
+  --green: #336550;
+  --lime: #d9f279;
+  --canvas: #f7f8f3;
+  --muted: #6e7e74;
+  --line: #e1e7df;
+}
+
+body { -webkit-font-smoothing: antialiased; }
+button, input, select, textarea { font-family: inherit; }
+button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+button:disabled { cursor: not-allowed; opacity: .65; }
+a, button { touch-action: manipulation; }
+:focus-visible { outline: 3px solid #648c36; outline-offset: 5px; }
+::selection { background: #d9f279; color: #183e32; }
+
+.fitlife-site { background: #fbfcf8; color: var(--ink); }
+.fitlife-site .page-width { width: min(1200px, calc(100% - 96px)); margin-inline: auto; }
+.fitlife-site section[id] { scroll-margin-top: 105px; }
+.fitlife-site a { text-decoration: none; }
+.site-kicker { display: inline-flex; align-items: center; gap: 10px; color: #637b59; font: 500 10px/1.6 'DM Mono', monospace; letter-spacing: 1.35px; }
+.kicker-dot { width: 7px; height: 7px; border-radius: 50%; background: #648437; box-shadow: 0 0 0 5px #64843712; }
+.site-button { display: inline-flex; align-items: center; justify-content: center; gap: 22px; min-height: 52px; padding: 15px 23px; border: 1px solid transparent; border-radius: 9px; font-size: 13px; font-weight: 700; line-height: 1.4; text-decoration: none; transition: background .2s, transform .2s, box-shadow .2s; }
+.site-button-dark { color: #fff; background: var(--deep); }
+.site-button-dark:hover { background: #2a5644; box-shadow: 0 6px 16px #183e321a; transform: translateY(-2px); }
+.site-button-lime { color: var(--deep); background: var(--lime); }
+.site-button-lime:hover { background: #e6faab; transform: translateY(-2px); }
+.site-text-link { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; color: var(--ink); font-size: 13px; font-weight: 700; }
+.site-text-link:hover { color: #67803b; }
+.brand-link { display: inline-block; flex-shrink: 0; }
+.fitlife-site .brand-icon, .signin-page .brand-icon { width: 43px; height: 43px; border-radius: 13px; background: var(--deep); color: var(--lime); transform: rotate(-5deg); }
+.fitlife-site .brand b, .signin-page .brand b { font-size: 19px; letter-spacing: 1px; }
+.fitlife-site .brand small, .signin-page .brand small { color: #6e7d70; font-size: 8px; letter-spacing: 1.8px; }
+.skip-link { position: fixed; left: 20px; top: -80px; padding: 14px 22px; background: var(--deep); color: #fff; border-radius: 8px; z-index: 100; }
+.skip-link:focus { top: 12px; }
+
+/* Navigation */
+.site-header { position: sticky; top: 0; z-index: 25; background: #fbfcf8f2; border-bottom: 1px solid #e5e9df; backdrop-filter: blur(18px); }
+.site-nav { height: 90px; display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+.desktop-navigation { display: flex; gap: 32px; align-items: center; }
+.desktop-navigation a { padding-block: 14px; color: #657368; font-size: 12px; font-weight: 600; }
+.desktop-navigation a:hover { color: var(--deep); }
+.nav-actions { display: flex; align-items: center; gap: 12px; }
+.nav-signin { min-height: 43px; padding: 11px 18px; font-size: 12px; gap: 23px; }
+.mobile-menu-button { display: none; width: 44px; height: 44px; place-items: center; background: transparent; color: var(--ink); border: 1px solid var(--line); border-radius: 8px; }
+.mobile-navigation { padding: 5px 24px 20px; background: #fbfcf8; border-top: 1px solid var(--line); }
+.mobile-navigation[hidden] { display: none; }
+.mobile-navigation a { display: flex; justify-content: space-between; align-items: center; min-height: 50px; padding: 10px; color: var(--ink); font-size: 14px; }
+
+/* Hero */
+.club-hero { display: grid; grid-template-columns: 1.02fr 1fr; gap: 52px; align-items: center; padding-block: 57px 67px; }
+.club-hero-copy { padding-block: 22px 4px; min-width: 0; }
+.club-hero h1 { position: relative; margin: 25px 0 23px; font-size: clamp(48px, 5.55vw, 78px); line-height: 1.07; font-weight: 800; letter-spacing: -4.8px; }
+.club-hero h1 > span { color: #729443; }
+.hero-sparkle { position: absolute; width: 42px; height: 42px; margin-left: 20px; bottom: 12px; color: #8eaa50; stroke-width: 1.4; }
+.club-hero-copy > p { max-width: 390px; margin: 0; color: #768073; font-size: 14px; line-height: 1.95; }
+.club-hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 23px; margin-top: 30px; }
+.hero-reassurance { display: flex; align-items: center; gap: 13px; margin-top: 37px; }
+.reassurance-icon { width: 46px; height: 46px; display: grid; place-items: center; border-radius: 50%; background: #edf2e1; color: #678445; }
+.hero-reassurance div { display: grid; gap: 5px; }
+.hero-reassurance strong { font-size: 11px; font-weight: 700; }
+.hero-reassurance div > span { font-size: 11px; color: #7c877a; }
+.hero-discover { display: flex; align-items: center; gap: 10px; margin-top: 44px; color: #778374; font: 9px 'DM Mono', monospace; letter-spacing: 1px; }
+.hero-discover > span { width: 29px; height: 29px; border: 1px solid #d8dfce; border-radius: 50%; display: grid; place-items: center; }
+.club-hero-visual { position: relative; padding-left: 14px; }
+.hero-photo-frame { position: relative; height: 525px; background: var(--deep); border-radius: 130px 22px 22px 22px; overflow: hidden; isolation: isolate; }
+.hero-photo { width: 100%; height: 100%; object-fit: cover; object-position: 42% center; }
+.hero-photo-frame::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, #10281d12 25%, #10281dba 100%); z-index: 0; }
+.photo-label { position: absolute; right: 23px; top: 23px; z-index: 1; display: flex; align-items: center; gap: 7px; padding: 10px 13px; background: #fbfcf81c; backdrop-filter: blur(14px); border: 1px solid #ffffff42; border-radius: 30px; color: white; font: 8px 'DM Mono', monospace; letter-spacing: 1px; }
+.photo-label > span { width: 5px; height: 5px; border-radius: 50%; background: var(--lime); }
+.photo-caption { position: absolute; bottom: 30px; left: 32px; color: #fff; z-index: 1; }
+.photo-caption > span { font: 9px 'DM Mono', monospace; letter-spacing: 1.7px; color: #d9edbc; }
+.photo-caption p { margin: 12px 0 0; font-size: 33px; line-height: 1.18; letter-spacing: -1.1px; font-weight: 600; }
+.photo-explore { position: absolute; bottom: 33px; right: 27px; z-index: 1; display: grid; place-items: center; width: 51px; height: 51px; background: var(--lime); color: var(--deep); border-radius: 50%; transition: transform .2s; }
+.photo-explore:hover { transform: rotate(8deg); }
+.hero-intent-card { position: absolute; left: -19px; top: 89px; display: flex; align-items: center; gap: 12px; padding: 17px; background: #fffffff5; border: 1px solid #ffffff; box-shadow: 0 16px 40px #172d2124; border-radius: 13px; z-index: 2; }
+.intent-icon { display: grid; place-items: center; width: 42px; height: 42px; color: var(--deep); background: #ebf3d9; border-radius: 10px; }
+.hero-intent-card > div { display: grid; gap: 7px; }
+.hero-intent-card small { color: #7e8a73; font: 8px 'DM Mono', monospace; letter-spacing: .7px; }
+.hero-intent-card strong { font-size: 13px; letter-spacing: -.3px; }
+.intent-bars { display: flex; gap: 3px; align-items: flex-end; height: 31px; margin-left: 13px; }
+.intent-bars i { width: 5px; height: 11px; background: #cee893; border-radius: 3px; }
+.intent-bars i:nth-child(2) { height: 15px; }
+.intent-bars i:nth-child(3) { height: 20px; }
+.intent-bars i:nth-child(4) { height: 26px; }
+.intent-bars i:nth-child(5) { height: 31px; background: #5e8042; }
+.hero-roundel { position: absolute; right: -18px; bottom: 134px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; width: 106px; height: 106px; border: 7px solid #fbfcf8; border-radius: 50%; background: var(--lime); color: var(--deep); transform: rotate(12deg); }
+.hero-roundel span { text-align: center; font: 500 8px/1.4 'DM Mono', monospace; letter-spacing: 1px; }
+.club-values { background: #e6efce; border-block: 1px solid #dce6c5; }
+.club-values > div { display: grid; grid-template-columns: repeat(4, 1fr); min-height: 83px; align-items: center; gap: 20px; }
+.club-values > div > span { display: flex; align-items: center; gap: 12px; font-size: 12px; font-weight: 700; }
+.club-values svg { flex-shrink: 0; color: #57753b; }
+.value-star { margin-left: auto; color: #95ae65; font-size: 24px; font-weight: 400; }
+.club-values > div > span:last-child .value-star { display: none; }
+
+/* The experience */
+.club-about { display: grid; grid-template-columns: .95fr 1fr; gap: 100px; align-items: center; padding-block: 110px; }
+.about-photo-frame { position: relative; height: 415px; background: var(--deep); border-radius: 20px; }
+.about-photo-frame > img { width: 100%; height: 100%; object-fit: cover; object-position: center 35%; border-radius: inherit; }
+.about-photo-note { position: absolute; bottom: 26px; right: -28px; display: flex; align-items: center; gap: 15px; padding: 20px 28px; border: 1px solid #e0e7d2; border-radius: 12px; background: #f0f5df; box-shadow: 0 10px 30px #183e3214; }
+.about-photo-note svg { color: #57743b; }
+.about-photo-note span { font-size: 14px; line-height: 1.5; color: #7d8d65; }
+.about-photo-note b { color: var(--deep); }
+.fitlife-site h2 { font-size: clamp(32px, 3.5vw, 48px); font-weight: 800; line-height: 1.14; letter-spacing: -2px; }
+.about-copy h2 { margin: 20px 0; }
+.about-copy h2 span, .club-section-heading h2 span { color: #78914f; font-weight: 500; }
+.about-copy > p { color: #768073; font-size: 13px; line-height: 1.95; max-width: 420px; }
+.club-checklist { display: grid; gap: 15px; padding: 12px 0 13px; list-style: none; }
+.club-checklist li { display: flex; align-items: center; gap: 11px; font-size: 12px; color: #5f705c; }
+.club-checklist svg { width: 23px; height: 23px; padding: 4px; background: #eaf1dc; color: #5d793d; border-radius: 50%; flex-shrink: 0; }
+
+/* Interactive method */
+.club-method { padding-block: 85px 90px; background: #f0f3e9; border-block: 1px solid #e5eada; }
+.club-section-heading { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; margin-bottom: 42px; }
+.club-section-heading h2 { margin: 17px 0 0; }
+.club-section-heading > p { max-width: 300px; margin: 0 0 4px; color: #788372; font-size: 13px; line-height: 1.9; }
+.fitlife-site .experience-stage { grid-template-columns: 1fr 1.18fr; gap: 38px; min-height: 390px; }
+.fitlife-site .stage-index { display: none; }
+.fitlife-site .stage-visual { border-radius: 18px; padding: 32px; background: var(--deep); min-height: 390px; }
+.fitlife-site .stage-visual::before { content: '+'; font-size: 380px; right: -25px; bottom: -65px; font-weight: 400; color: #d9f2790a; }
+.fitlife-site .stage-visual > span { font-size: clamp(30px, 3.5vw, 44px); line-height: 1.04; margin-top: 20px; }
+.fitlife-site .stage-visual > small { order: -1; color: #bdcca8; margin-bottom: 10px; }
+.fitlife-site .stage-visual > svg { width: 48px; height: 48px; padding: 10px; border: 1px solid #d9f27930; border-radius: 12px; }
+.fitlife-site .stage-detail { font-size: 12px; max-width: 340px; margin-top: 18px; line-height: 1.8; color: #bed0b5; }
+.fitlife-site .experience-list { display: flex; flex-direction: column; justify-content: center; border: 0; gap: 8px; }
+.fitlife-site .experience-item { padding: 18px 22px; border: 1px solid transparent; border-radius: 12px; grid-template-columns: 25px 1fr 18px; gap: 17px; }
+.fitlife-site .experience-item.active { background: #fbfcf8; border-color: #dce5cc; box-shadow: 0 4px 12px #183e3204; }
+.fitlife-site .experience-item:hover { background: #f7f9ef; }
+.fitlife-site .experience-item h3 { font-size: 14px; margin-bottom: 7px; }
+.fitlife-site .experience-item p { max-width: 340px; color: #728069; font-size: 12px; line-height: 1.65; }
+.fitlife-site .experience-item > span { font-size: 10px; }
+
+/* Keep live membership data and existing selection flow. */
+.fitlife-site .membership-section { padding: 95px 48px 100px; background: #fbfcf8; scroll-margin-top: 85px; }
+.fitlife-site .membership-inner { width: min(1200px, 100%); }
+.fitlife-site .membership-heading { max-width: 650px; margin-bottom: 49px; }
+.fitlife-site .membership-heading .eyebrow { display: inline-block; color: #6c8155; margin-bottom: 17px; letter-spacing: 1.6px; }
+.fitlife-site .membership-heading h2 { max-width: 600px; margin-inline: auto; font-size: 44px; }
+.fitlife-site .membership-heading p { font-size: 13px; color: #768073; max-width: 490px; }
+.fitlife-site .membership-grid { gap: 22px; }
+.fitlife-site .membership-card { border-radius: 17px; border: 1px solid #dfe5d7; padding: 29px; min-height: 423px; box-shadow: none; }
+.fitlife-site .membership-card:hover { border-color: #aabb8d; box-shadow: 0 14px 35px #183e320c; transform: translateY(-5px); }
+.fitlife-site .membership-card--featured { background: var(--deep); border-color: var(--deep); box-shadow: 0 15px 35px #183e321c; }
+.fitlife-site .membership-card--featured:hover { background: #214d3c; }
+.fitlife-site .membership-badge { position: static; align-self: flex-start; padding: 6px 10px; margin-bottom: 19px; font-size: 8px; }
+.fitlife-site .membership-card:not(.membership-card--featured) { padding-top: 74px; }
+.fitlife-site .membership-card-head { padding-bottom: 16px; gap: 8px; }
+.fitlife-site .membership-plan-name { font: 700 18px Manrope, sans-serif; letter-spacing: -.4px; text-transform: none; }
+.fitlife-site .membership-duration { font-size: 9px; color: #76856b; }
+.fitlife-site .membership-card--featured .membership-duration { color: #b4c4a2; }
+.fitlife-site .membership-price-value { font-size: clamp(28px, 2.9vw, 38px); letter-spacing: -1.8px; }
+.fitlife-site .membership-price-value small { display: inline-block; font-size: 11px; letter-spacing: 0; }
+.fitlife-site .membership-description { font-size: 12px; line-height: 1.75; margin-block: 15px 20px; color: #728066; }
+.fitlife-site .membership-card--featured .membership-description { color: #b8c9ac; }
+.fitlife-site .membership-benefits { gap: 15px; padding-block: 23px 28px; }
+.fitlife-site .membership-benefits li { font-size: 12px; }
+.fitlife-site .membership-cta { border-radius: 8px; min-height: 47px; justify-content: space-between; font-size: 12px; }
+
+/* Final call to action and footer */
+.club-cta { padding-bottom: 65px; }
+.club-cta-inner { position: relative; isolation: isolate; overflow: hidden; display: flex; align-items: center; justify-content: space-between; gap: 35px; background: var(--deep); color: #fff; padding: 54px 58px; border-radius: 24px; }
+.club-cta .site-kicker { color: #b4c69c; }
+.club-cta h2 { margin: 18px 0 17px; font-size: 47px; }
+.club-cta h2 span { font-weight: 500; color: var(--lime); }
+.club-cta p { color: #b7c7ab; font-size: 12px; line-height: 1.7; margin: 0; }
+.club-cta-actions { position: relative; display: grid; gap: 19px; justify-items: center; flex-shrink: 0; }
+.cta-signin { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: #d0ddc7; padding: 8px 0; font-size: 10px; }
+.cta-signin:hover { color: var(--lime); }
+.cta-background-arrow { position: absolute; right: 80px; bottom: -100px; width: 360px; height: 360px; color: #d9f27906; stroke-width: 1; z-index: -1; }
+.fitlife-site .club-footer { display: block; padding: 0; background: transparent; border-top: 0; color: #788372; font-size: 11px; }
+.fitlife-site .footer-main { display: flex; align-items: center; gap: 33px; padding-bottom: 28px; }
+.footer-main > p { font-size: 11px; }
+.back-to-top { display: inline-flex; align-items: center; gap: 10px; margin-left: auto; color: var(--ink); font-size: 11px; }
+.fitlife-site .footer-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; border-top: 1px solid var(--line); padding: 24px 0; font-size: 10px; }
+.footer-bottom nav { display: flex; gap: 22px; }
+.footer-bottom nav a { color: #64735a; font-size: 10px; }
+.footer-signoff { display: inline-flex; align-items: center; gap: 6px; }
+
+/* A calmer, more readable sign-in flow. */
+.signin-page { display: grid; grid-template-columns: 1fr 1fr; min-height: 100dvh; background: #fbfcf8; }
+.signin-story { position: relative; isolation: isolate; overflow: hidden; display: flex; flex-direction: column; padding: 48px 11%; background: var(--deep); color: white; }
+.signin-background { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; opacity: .27; }
+.signin-story::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, #12332366, #123323dd); z-index: -1; }
+.signin-page .brand.light .brand-icon { background: var(--lime); color: var(--deep); }
+.signin-page .brand.light small { color: #bfcea9; }
+.signin-story-copy { margin-block: auto; padding-block: 100px; }
+.signin-story-copy .site-kicker { color: #d3e1b4; }
+.signin-story h1 { font-size: clamp(48px, 5.3vw, 76px); letter-spacing: -3.5px; line-height: 1.1; margin: 26px 0; }
+.signin-story h1 span { color: var(--lime); }
+.signin-story p { color: #c0cfb4; font-size: 15px; line-height: 1.9; }
+.signin-story-note { display: inline-flex; align-items: center; gap: 12px; margin-top: 35px; padding-top: 28px; border-top: 1px solid #d9f27933; color: #d8e4c7; font-size: 12px; }
+.signin-story-note svg { color: var(--lime); }
+.signin-story-footer { color: #b1c29c; font: 9px 'DM Mono', monospace; letter-spacing: 1.7px; }
+.signin-panel { display: flex; flex-direction: column; padding: 37px 9%; }
+.signin-back { display: inline-flex; align-items: center; gap: 9px; align-self: flex-start; color: #64765b; background: transparent; font-size: 12px; min-height: 44px; padding: 0; }
+.signin-back:hover { color: var(--deep); }
+.signin-box { width: min(380px, 100%); margin: auto; padding-block: 40px; }
+.signin-mobile-brand { display: none; }
+.signin-lock { display: grid; place-items: center; width: 54px; height: 54px; margin-bottom: 28px; border: 1px solid #dce7c9; border-radius: 15px; color: #54743b; background: #edf3df; }
+.signin-box .site-kicker { font-size: 9px; }
+.signin-box h2 { margin: 12px 0 11px; font-size: 38px; line-height: 1.15; letter-spacing: -1.7px; }
+.signin-box > p { margin: 0 0 32px; color: #75816d; font-size: 13px; }
+.signin-box form { display: flex; flex-direction: column; gap: 10px; }
+.signin-box label { color: #40583a; font-size: 12px; font-weight: 700; }
+.signin-box input { width: 100%; min-height: 51px; padding: 14px 16px; border: 1px solid #dce3d1; border-radius: 9px; background: white; color: var(--ink); font-size: 14px; transition: border-color .2s, box-shadow .2s; }
+.signin-box input:focus { outline: 0; border-color: #70914e; box-shadow: 0 0 0 3px #96b9611a; }
+.signin-box input::placeholder { color: #8b9485; }
+.signin-box label:not(:first-child) { margin-top: 12px; }
+.signin-password { position: relative; }
+.signin-password input { padding-right: 50px; }
+.signin-password button { position: absolute; display: grid; place-items: center; right: 5px; top: 5px; width: 41px; height: 41px; border-radius: 7px; color: #7c8c70; background: transparent; }
+.signin-submit { width: 100%; margin-top: 16px; justify-content: space-between; }
+.signin-help { display: flex; justify-content: center; align-items: center; gap: 4px; margin-top: 17px; color: #76826d; font-size: 12px; }
+.signin-help button { min-height: 44px; background: transparent; color: #406031; font-size: 12px; font-weight: 700; }
+.signin-access-note { display: flex; align-items: center; justify-content: center; gap: 11px; border-top: 1px solid var(--line); margin-top: 23px; padding-top: 22px; color: #829074; }
+.signin-access-note svg { flex-shrink: 0; }
+.signin-access-note p { font-size: 10px; line-height: 1.8; margin: 0; }
+.signin-copyright { text-align: center; color: #87927b; font-size: 9px; }
+
+@media (min-width: 801px) { .mobile-navigation { display: none; } }
+@media (max-width: 1100px) {
+  .fitlife-site .page-width { width: calc(100% - 64px); }
+  .club-hero { gap: 35px; padding-block: 40px 52px; }
+  .club-hero h1 { letter-spacing: -3px; }
+  .hero-sparkle { width: 32px; height: 32px; margin-left: 12px; }
+  .hero-photo-frame { height: 490px; }
+  .hero-intent-card { left: -10px; padding: 12px; gap: 9px; }
+  .intent-bars { display: none; }
+  .club-hero-actions { gap: 10px 16px; }
+  .club-hero-actions .site-button { padding-inline: 16px; gap: 12px; font-size: 12px; }
+  .club-hero-actions .site-text-link { font-size: 12px; }
+  .club-about { gap: 65px; }
+  .fitlife-site .membership-section { padding-inline: 32px; }
+  .fitlife-site .membership-card { padding-inline: 22px; }
+  .club-cta-inner { padding: 42px; }
+  .club-cta h2 { font-size: 41px; }
+}
+
+@media (max-width: 800px) {
+  .desktop-navigation { display: none; }
+  .mobile-menu-button { display: grid; }
+  .site-nav { height: 78px; }
+  .club-hero { grid-template-columns: 1fr; gap: 34px; padding-block: 34px 48px; }
+  .club-hero-copy { max-width: 600px; }
+  .club-hero h1 { font-size: clamp(49px, 8.4vw, 68px); }
+  .club-hero-copy > p { max-width: 490px; }
+  .hero-reassurance { margin-top: 25px; }
+  .hero-discover { display: none; }
+  .club-hero-visual { padding-left: 10px; }
+  .hero-photo-frame { height: 415px; border-top-left-radius: 95px; }
+  .hero-photo { object-position: center 43%; }
+  .hero-intent-card { top: 48px; }
+  .hero-roundel { right: -10px; bottom: 117px; }
+  .club-values > div { grid-template-columns: 1fr 1fr; gap: 22px; padding-block: 24px; }
+  .club-values > div > span { font-size: 12px; }
+  .value-star { display: none; }
+  .club-about { gap: 40px; padding-block: 70px; }
+  .about-photo-frame { height: 380px; }
+  .about-photo-note { right: -15px; padding: 17px; }
+  .about-copy h2 { font-size: 32px; letter-spacing: -1.3px; }
+  .about-copy > p, .club-checklist li { font-size: 12px; }
+  .club-checklist { gap: 12px; }
+  .club-section-heading { align-items: flex-start; gap: 25px; }
+  .club-section-heading > p { max-width: 235px; margin-top: 34px; font-size: 12px; }
+  .fitlife-site .experience-stage { gap: 20px; }
+  .fitlife-site .experience-list { grid-column: auto; }
+  .fitlife-site .experience-item { padding: 15px 12px; gap: 10px; grid-template-columns: 20px 1fr 16px; }
+  .fitlife-site .stage-visual { padding: 25px; }
+  .fitlife-site .membership-grid { gap: 12px; }
+  .fitlife-site .membership-card { padding-inline: 18px; }
+  .fitlife-site .membership-card-head { flex-wrap: wrap; }
+  .fitlife-site .membership-price-value { font-size: 27px; }
+  .fitlife-site .membership-price-value small { font-size: 9px; }
+  .club-cta-inner { align-items: flex-start; flex-direction: column; }
+  .club-cta-actions { justify-items: start; }
+  .footer-main > p { display: none; }
+  .footer-signoff { display: none; }
+  .signin-story { padding: 40px 9%; }
+  .signin-panel { padding-inline: 8%; }
+  .signin-story h1 { font-size: 50px; }
+  .signin-box h2 { font-size: 33px; }
+}
+
+@media (max-width: 600px) {
+  .fitlife-site .page-width { width: calc(100% - 40px); }
+  .site-nav { gap: 10px; height: 74px; }
+  .fitlife-site .brand b { font-size: 16px; }
+  .fitlife-site .brand small { font-size: 7px; letter-spacing: 1px; }
+  .fitlife-site .brand-icon { width: 36px; height: 36px; border-radius: 11px; }
+  .fitlife-site .brand { gap: 8px; }
+  .nav-actions { gap: 8px; }
+  .nav-signin { min-height: 40px; padding: 10px 13px; gap: 12px; font-size: 11px; }
+  .mobile-menu-button { width: 40px; height: 40px; }
+  .site-kicker { font-size: 8px; letter-spacing: 1.05px; }
+  .club-hero-copy { padding-top: 6px; }
+  .club-hero h1 { font-size: clamp(42px, 10.8vw, 62px); line-height: 1.1; letter-spacing: -2.7px; margin-block: 21px; }
+  .hero-sparkle { width: 30px; height: 30px; bottom: 9px; }
+  .club-hero-copy > p { font-size: 13px; line-height: 1.9; }
+  .club-hero-actions { gap: 13px 17px; margin-top: 23px; }
+  .club-hero-actions .site-button { min-height: 49px; padding-inline: 16px; font-size: 11px; gap: 11px; }
+  .club-hero-actions .site-text-link { font-size: 11px; gap: 7px; }
+  .hero-reassurance strong, .hero-reassurance div > span { font-size: 10px; }
+  .reassurance-icon { width: 40px; height: 40px; }
+  .hero-photo-frame { height: 365px; border-top-left-radius: 80px; }
+  .hero-intent-card { left: -7px; top: 48px; padding: 11px; }
+  .hero-intent-card strong { font-size: 11px; }
+  .hero-intent-card small { font-size: 7px; }
+  .intent-icon { width: 34px; height: 34px; }
+  .photo-label { top: 17px; right: 17px; font-size: 7px; }
+  .photo-caption { left: 23px; bottom: 25px; }
+  .photo-caption p { font-size: 29px; }
+  .photo-caption > span { font-size: 8px; }
+  .photo-explore { width: 43px; height: 43px; right: 22px; bottom: 27px; }
+  .hero-roundel { width: 86px; height: 86px; border-width: 5px; right: -7px; bottom: 123px; gap: 5px; }
+  .hero-roundel svg { width: 24px; height: 24px; }
+  .hero-roundel span { font-size: 7px; }
+  .club-values > div { gap: 21px 12px; }
+  .club-values > div > span { font-size: 10px; gap: 9px; }
+  .club-values svg { width: 17px; }
+  .club-about { grid-template-columns: 1fr; gap: 34px; padding-block: 57px 63px; }
+  .about-photo-frame { height: 325px; margin-right: 12px; }
+  .about-photo-note { right: -12px; bottom: 20px; padding: 16px 22px; }
+  .about-copy h2, .fitlife-site h2 { font-size: 34px; letter-spacing: -1.5px; }
+  .about-copy > p { font-size: 13px; }
+  .club-checklist li { font-size: 12px; }
+  .club-method { padding-block: 60px; }
+  .club-section-heading { flex-direction: column; gap: 16px; margin-bottom: 30px; }
+  .club-section-heading > p { margin: 0; max-width: 340px; font-size: 13px; }
+  .fitlife-site .experience-stage { display: grid; grid-template-columns: 1fr; gap: 20px; }
+  .fitlife-site .stage-visual { min-height: 325px; }
+  .fitlife-site .stage-visual > span { font-size: 34px; }
+  .fitlife-site .experience-list { margin: 0; }
+  .fitlife-site .experience-item { margin: 0; padding: 17px; gap: 13px; }
+  .fitlife-site .membership-section { padding: 64px 20px; }
+  .fitlife-site .membership-heading { margin-bottom: 32px; }
+  .fitlife-site .membership-heading h2 { font-size: 34px; }
+  .fitlife-site .membership-heading p { font-size: 12px; }
+  .fitlife-site .membership-grid { grid-template-columns: 1fr; gap: 18px; }
+  .fitlife-site .membership-card, .fitlife-site .membership-card:not(.membership-card--featured) { min-height: 0; padding: 26px; }
+  .fitlife-site .membership-card--featured { order: 0; }
+  .fitlife-site .membership-card-head { flex-wrap: nowrap; }
+  .fitlife-site .membership-price-value { font-size: 36px; }
+  .fitlife-site .membership-price-value small { font-size: 11px; }
+  .club-cta { padding-bottom: 44px; }
+  .club-cta-inner { padding: 33px 26px; border-radius: 19px; gap: 25px; }
+  .club-cta h2 { font-size: 36px; }
+  .club-cta .site-kicker { font-size: 8px; letter-spacing: .9px; }
+  .club-cta p { font-size: 12px; }
+  .club-cta-actions { gap: 10px; }
+  .club-cta .site-button { font-size: 12px; padding: 14px 18px; gap: 17px; }
+  .fitlife-site .footer-main { gap: 12px; padding-bottom: 24px; }
+  .back-to-top { font-size: 10px; gap: 6px; }
+  .fitlife-site .footer-bottom { display: grid; justify-content: start; gap: 16px; font-size: 9px; }
+  .footer-bottom nav { gap: 20px; }
+  .signin-page { grid-template-columns: 1fr; }
+  .signin-story { display: none; }
+  .signin-panel { min-height: 100dvh; padding: 20px 26px; }
+  .signin-mobile-brand { display: block; margin-bottom: 38px; }
+  .signin-lock { display: none; }
+  .signin-box { padding-block: 35px; }
+  .signin-box h2 { font-size: 35px; }
+  .signin-box input { font-size: 16px; }
+  .signin-access-note p { font-size: 10px; }
+  .signin-copyright { padding-bottom: 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
